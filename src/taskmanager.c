@@ -12,8 +12,12 @@ int main(int argc, char const *argv[])
 
     if (table_exists("tasks") != SQLITE_OK) {
         show_error("Table 'tasks' does not exists!");
+        close_database();
         return 1;
-        
+    } else {
+        if (create_tables() != SQLITE_OK) {
+            return 1;
+        }
     }
 
 

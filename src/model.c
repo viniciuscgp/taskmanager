@@ -36,10 +36,25 @@ int table_exists(char *table_name) {
         show_error(err_msg);
 
         sqlite3_free(err_msg);        
-        sqlite3_close(db);
 
         return rc;
     }     
 
     return rc;  
+}
+
+int create_tables()
+{
+    int rc;
+    char *err_msg;
+    char *sql = "CREATE TABLE tasks (title TEXT, description TEXT, priority INTEGER, due_date TEXT);";
+
+    rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
+    
+    if (rc != SQLITE_OK ) {    
+        show_error("SQL error:");
+        show_error(err_msg);
+        sqlite3_free(err_msg);            
+    }     
+    return rc;
 }
