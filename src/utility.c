@@ -3,5 +3,5 @@
 
 void show_error(char *err)
 {
-   fprintf(stdout, "%s", err);
+   fprintf(stderr, "%s\n", err);
 }
